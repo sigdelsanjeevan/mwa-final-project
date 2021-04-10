@@ -1,7 +1,5 @@
 const path=require("path");
 var  mongoose=require("mongoose");
-const userModel=mongoose.model('user')
-const rideModel=mongoose.model('ride')
 
 var responseGenerator = require("./../../libs/responseGenerator");
 var auth = require("./../../middlewares/authorization");
@@ -22,7 +20,7 @@ module.exports.doSignUP=function(req,res) {
     if(req.body.firstname!=undefined && req.body.lastname!=undefined && req.body.password!=undefined &&
         req.body.email!=undefined && req.body.phone!=undefined){
 
-        userModel.findOne({"email":req.body.email},function(err,user){
+        User.findOne({"email":req.body.email},function(err,user){
             if(err){
                 var myResponse = responseGenerator.generate(true,err,500,null);
                 res.send(myResponse);
@@ -34,7 +32,7 @@ module.exports.doSignUP=function(req,res) {
                 res.send(myResponse);
             }
             else{
-                var newUser = new userModel({
+                var newUser = new User({
 
                     username    : req.body.firstname+' '+req.body.lastname,
                     firstName   : req.body.firstname,

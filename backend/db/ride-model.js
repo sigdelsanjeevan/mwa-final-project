@@ -47,5 +47,5 @@ const rideShema = new mongoose.Schema({
 
 });
 
-mongoose.model("ride", rideShema);
-
+const Ride =mongoose.model("ride", rideShema);
+module.exports =Ride;
