@@ -3,17 +3,26 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var fs = require('fs');
+
+
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+app.set("port", 3000);
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+//app.set('views', path.join(__dirname, 'views'));
+//app.set('view engine', 'jade');
 
-app.use(logger('dev'));
+
+const logFile = path.join(__dirname, 'access.log');
+const streamLog = fs.createWriteStream(logFile);
+app.use(logger('logs', {stream: streamLog}));
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -38,4 +47,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+const server= app.listen(app.get("port"), function() {
+  const port= server.address().port;
+  console.log("Listening to port "+ port);
+});
