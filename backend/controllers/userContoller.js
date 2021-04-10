@@ -1,10 +1,10 @@
 const path=require("path");
 var  mongoose=require("mongoose");
 
-var responseGenerator = require("./../../libs/responseGenerator");
-var auth = require("./../../middlewares/authorization");
+var responseGenerator = require("../libs/responseGenerator");
+var auth = require("../middlewares/authorization");
 
-var crypto = require("./../../libs/crypto");
+var crypto = require("../libs/crypto");
 var key = "Crypto-Key";
 
 
@@ -15,10 +15,41 @@ module.exports.doLogin=function(req,res) {
 
 // -------- API TO SIGNUP USER ---------
 module.exports.doSignUP=function(req,res) {
+
+    const response = {
+        status: 400,
+        message: { "Message": "data error happend" }
+    };
+    if (req.body && req.body._id && req.body.name && req.body.course && req.body.grade) {
+        User.create({
+            _id: req.body._id,
+            username    : req.body.firstname+' '+req.body.lastname,
+            firstName   : req.body.firstname,
+            lastName    : req.body.lastname,
+            email       : req.body.email,
+            gender       : req.body.gender,
+            dob         : req.body.dateOfbirth,
+            phone       : req.body.phone
+        }, function (err, student) {
+            if (err) {
+                response.status = 400;
+                response.message = { "Message": err }
+            } else {
+                response.status = 201;
+                response.message = { "Message": "student created" }
+            }
+
+            res.status(response.status).json(response.message);
+        });
+    }
+    else {
+        res.status(response.status).json(response.message);
+    }
+    /*
     var signupInfo = {};
 
-    if(req.body.firstname!=undefined && req.body.lastname!=undefined && req.body.password!=undefined &&
-        req.body.email!=undefined && req.body.phone!=undefined){
+    if(req.body.firstname && req.body.lastname && req.body.password &&
+        req.body.email && req.body.phone){
 
         User.findOne({"email":req.body.email},function(err,user){
             if(err){
@@ -66,7 +97,7 @@ module.exports.doSignUP=function(req,res) {
     else{
         var myResponse = responseGenerator.generate(true,"Parameter missing",500,null);
         res.send(myResponse);
-    }
+    }*/
 };
 
 module.exports.doUpdate=function(req,res) {
