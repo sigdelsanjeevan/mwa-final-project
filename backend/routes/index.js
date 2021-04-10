@@ -1,7 +1,7 @@
 const express=require("express");
 const userController=require("../controllers/userContoller");
 const rideController=require("../controllers/rideContoller");
-var auth = require("./../../middlewares/authorization");
+var auth = require("../middlewares/authorization");
 
 const router=express.Router();
 

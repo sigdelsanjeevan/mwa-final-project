@@ -1,8 +1,7 @@
 
 
 var mongoose = require('mongoose');
-var rideModel = mongoose.model('ride');
-var userModel = mongoose.model('user');
+
 
 var responseGenerator = require("./../libs/responseGenerator");
 

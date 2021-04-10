@@ -1,10 +1,8 @@
 const mongoose = require("mongoose");
-require("./user-model");
-require("./ride-model");
-
 
 var dburl = "mongodb://localhost:27017/rideshare";
-
+require("./user-model");
+require("./ride-model");
 
 mongoose.connect(dburl, { useNewUrlParser: true, useUnifiedTopology: true });
 
