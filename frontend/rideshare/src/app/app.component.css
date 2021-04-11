@@ -1,6 +1,9 @@
 .navbuttons {
-    margin-right: auto;
-}
+    margin: auto;
+    margin-right: 0%;
+   
+} 
+
 
 .navbuttons button {
     margin: 3px;

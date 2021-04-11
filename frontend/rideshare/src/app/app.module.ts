@@ -5,11 +5,23 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbButtonModule, NbStepperModule, NbCardModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { NbIconModule } from '@nebular/theme';
 import { AppRoutingModule } from './app-routing.module';
+import { SignupComponent } from './register/signup/signup.component';
+import { LoginComponent } from './register/login/login.component';
+
+import { RouterModule } from '@angular/router';
+import { HomePageComponent } from './home/home-page/home-page.component';
+import { NavbarComponent } from './header/navbar/navbar.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SignupComponent,
+    LoginComponent,
+    HomePageComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +33,22 @@ import { AppRoutingModule } from './app-routing.module';
     NbCardModule,
     NbButtonModule,
     NbEvaIconsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NbIconModule,
+    RouterModule.forRoot([
+      {
+        path:'',
+        component:HomePageComponent
+      },
+      {
+        path:'login',
+        component:LoginComponent
+      },
+      {
+        path:'signup',
+        component:SignupComponent
+      },
+  ])
   ],
   providers: [],
   bootstrap: [AppComponent]
