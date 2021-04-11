@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
 import { HomePageComponent } from './home/home-page/home-page.component';
 import { NavbarComponent } from './header/navbar/navbar.component';
 import { SearchComponent } from './header/navbar/search.component';
+import { SharerideComponent } from './home/ride/shareride/shareride.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { SearchComponent } from './header/navbar/search.component';
     LoginComponent,
     HomePageComponent,
     NavbarComponent,
-    SearchComponent
+    SearchComponent,
+    SharerideComponent
   ],
   imports: [
     BrowserModule,

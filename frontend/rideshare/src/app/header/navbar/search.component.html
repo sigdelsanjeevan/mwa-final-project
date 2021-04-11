@@ -1,10 +1,12 @@
 <nb-layout-column>
     <nb-card>
         <nb-card-body class="example-items-col">
-            From: <input type="text" nbInput shape="round" placeholder="Enter a city">
-            To: <input type="text" nbInput shape="round" placeholder="Enter your destination">
-            Date: <input nbInput shape="round" placeholder="Pick a date" [nbDatepicker]="dateTimePicker">
+            From: <input type="text" nbInput shape="round" class="elem"  placeholder="Enter a city">
+            To: <input type="text" nbInput shape="round" class="elem"  placeholder="Enter your destination">
+            Date: <input nbInput shape="round" placeholder="Pick a date" class="elem"  [nbDatepicker]="dateTimePicker">
             <nb-datepicker #dateTimePicker></nb-datepicker>
+          <button nbButton  shape="round" outline status="info" class="elem" routerLink="/signup">search<nb-icon icon="search-outline">
+          </nb-icon></button>
         </nb-card-body>
     </nb-card>
 </nb-layout-column>

@@ -1,13 +1,14 @@
-<h1 id="title" class="title">Login</h1>
-<p class="sub-title">Hello! Log in with your email.</p>
-<nb-card>
-    <nb-card-body class="example-items-col">
-      
 
+<nb-card class="form-cart" >
+    <nb-card-body class="example-items-col items">
+      <div class="form-header">
+        <h1 id="title" class="title">Login</h1>
+        <p class="sub-title">Hello! Log in with your email.</p>
+      </div>
 
-   
       <label class="label" for="input-email">Email address:</label>
       <input nbInput
+             class="elements"
       status="basic"
              fullWidth
              name="email"
@@ -15,49 +16,23 @@
              placeholder="Email address"
              shape="semi-round"
              >
-            
-      
       <span class="label-with-link">
         <label class="label" for="input-password">Password:</label>
       </span>
       <input nbInput
              fullWidth
+             class="elements"
              name="password"
              type="password"
              id="input-password"
+             shape="semi-round"
              >
-      
-   
-  
-  
-  
-    <button nbButton
-            status="primary"
-   >
-      Log In
-    </button>
-  
+
+      <button nbButton hero shape="semi-round" status="success" >Log In</button>
+      <section class="another-action elements" aria-label="Register">
+        Don't have an account? <a class="text-link" routerLink="/signup"><strong>Register</strong></a>
+      </section>
     </nb-card-body>
   </nb-card>
 
 
-<section class="another-action" aria-label="Register">
-  Don't have an account? <a class="text-link" routerLink="../signup/signup">Register</a>
-</section>
-<!-- <nb-card>
-    <h1 id="title" class="title">Login</h1>
-<p class="sub-title">Hello! Log in with your email.</p>
-
-
-  <button nbButton>
-    Log In
-  </button>
-
-
-<section class="another-action" aria-label="Register">
-  Don't have an account? <a class="text-link" routerLink="../register">Register</a>
-</section>
-    <nb-card-body class="example-items-col">
-      <input type="text" nbInput fullWidth status="basic" placeholder="username">
-    </nb-card-body>
-  </nb-card> -->
