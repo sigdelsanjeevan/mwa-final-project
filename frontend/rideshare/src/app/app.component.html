@@ -1,6 +1,10 @@
 <nb-layout>
-  <nb-layout-header fixed>
-    RideShare
+  <nb-layout-header>
+    <a href="#">RideShare</a>
+    <div class="navbuttons">
+      <button nbButton hero shape="round" status="success" size="medium">Login</button>
+      <button nbButton hero shape="round" status="info">SignUp</button>
+    </div>
   </nb-layout-header>
 
   <nb-layout-column>
@@ -25,7 +29,7 @@
             <button nbButton nbStepperPrevious>prev</button>
             <button nbButton nbStepperNext>next</button>
           </nb-step>
-          <nb-step label="Third step">
+          <nb-step [label]="labelThree">
             <ng-template #labelThree>Third step</ng-template>
             <h3>Choose a ride.</h3>
             <p class="lorem">
