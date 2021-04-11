@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbButtonModule, NbStepperModule, NbCardModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbButtonModule, NbStepperModule, NbCardModule, NbInputModule, NbDatepickerModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbIconModule } from '@nebular/theme';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,7 @@ import { LoginComponent } from './register/login/login.component';
 import { RouterModule } from '@angular/router';
 import { HomePageComponent } from './home/home-page/home-page.component';
 import { NavbarComponent } from './header/navbar/navbar.component';
+import { SearchComponent } from './header/navbar/search.component';
 
 
 @NgModule({
@@ -21,13 +22,15 @@ import { NavbarComponent } from './header/navbar/navbar.component';
     SignupComponent,
     LoginComponent,
     HomePageComponent,
-    NavbarComponent
+    NavbarComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     NbThemeModule.forRoot({ name: 'default' }),
     NbSidebarModule.forRoot(),
+    NbDatepickerModule.forRoot(),
     NbLayoutModule,
     NbStepperModule,
     NbCardModule,
@@ -35,20 +38,21 @@ import { NavbarComponent } from './header/navbar/navbar.component';
     NbEvaIconsModule,
     AppRoutingModule,
     NbIconModule,
+    NbInputModule,
     RouterModule.forRoot([
       {
-        path:'',
-        component:HomePageComponent
+        path: '',
+        component: HomePageComponent
       },
       {
-        path:'login',
-        component:LoginComponent
+        path: 'login',
+        component: LoginComponent
       },
       {
-        path:'signup',
-        component:SignupComponent
+        path: 'signup',
+        component: SignupComponent
       },
-  ])
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
