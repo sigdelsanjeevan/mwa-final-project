@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbButtonModule, NbStepperModule, NbCardModule, NbInputModule, NbDatepickerModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbButtonModule, NbStepperModule, NbCardModule, NbInputModule, NbDatepickerModule, NbPopoverModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbIconModule } from '@nebular/theme';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +15,7 @@ import { HomePageComponent } from './home/home-page/home-page.component';
 import { NavbarComponent } from './header/navbar/navbar.component';
 import { SearchComponent } from './header/navbar/search.component';
 import { SharerideComponent } from './home/ride/shareride/shareride.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -40,7 +41,9 @@ import { SharerideComponent } from './home/ride/shareride/shareride.component';
     NbEvaIconsModule,
     AppRoutingModule,
     NbIconModule,
+    NbPopoverModule,
     NbInputModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       {
         path: '',
