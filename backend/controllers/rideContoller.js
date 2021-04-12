@@ -2,11 +2,23 @@ const path=require("path");
 
 
 module.exports.getAllRides=function(req,res) {
-    res.json('all rides')
+    req.collection.find({})
+        .toArray()
+        .then(results=>res.json(results))
+        .catch(err=>res.send(err))
 };
 
 module.exports.publishRide=function(req,res) {
-    res.json('publishRide')
+    const {from,to,createdOn,seatsNumber} = req.body;
+    if(!from || !to  || !createdOn  || !seatsNumber ){
+        return res.status(400).json({
+            message : 'data is not valid !!'
+        });
+    }
+    const ride = {from,to,createdOn,seatsNumber};
+    req.collection.insertone(ride)
+        .then(result =>res.json(result))
+        .catch(err=>res.send(err));
 };
 
 module.exports.searchRide=function(req,res) {
@@ -18,7 +30,10 @@ module.exports.updateRide=function(req,res) {
 };
 
 module.exports.deleteRide=function(req,res) {
-    res.json('deleteRide')
+    const {id}=req.params;
+    req.collection.deleteOne({id})
+        .then(result=>res.json(result))
+        .catch(err=>res.send(err))
 };
 
 

@@ -3,8 +3,15 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const cors =require('cors');
 var fs = require('fs');
 
+const mongoose = require("mongoose");
+require('dotenv').config();
+
+
+require("./db/user-model");
+require("./db/ride-model");
 
 
 
@@ -14,13 +21,18 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
-require('./db/db')
-
 app.set("port", 5000);
 
+mongoose
+.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+.then((client)=>{
+    const db=client.db('rideshare');
+    const collection=db.collection('rideshare');
+    app.collection['rideshare']=collection;
 
-//app.set('views', path.join(__dirname, 'views'));
-//app.set('view engine', 'jade');
+}).catch((err)=>{
+  console.log(err)
+});
 
 
 const logFile = path.join(__dirname, 'access.log');
@@ -31,8 +43,14 @@ app.use(logger('logs', {stream: streamLog}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use((req,res,next)=>{
+  const collection =req.app.locals['rideshare'];
+  req.collection=collection;
+  next();
+})
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
