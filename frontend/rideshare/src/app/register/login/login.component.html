@@ -1,38 +1,41 @@
 
 <nb-card class="form-cart" >
+  
     <nb-card-body class="example-items-col items">
       <div class="form-header">
         <h1 id="title" class="title">Login</h1>
         <p class="sub-title">Hello! Log in with your email.</p>
       </div>
-
-      <label class="label" for="input-email">Email address:</label>
+    <form (submit)="login($event)">
+      <label class="label" for="email">Email address:</label>
       <input nbInput
              class="elements"
       status="basic"
              fullWidth
              name="email"
-             id="input-email"
+             id="email"
              placeholder="Email address"
              shape="semi-round"
              >
       <span class="label-with-link">
-        <label class="label" for="input-password">Password:</label>
+        <label class="label" for="password">Password:</label>
       </span>
       <input nbInput
              fullWidth
              class="elements"
              name="password"
              type="password"
-             id="input-password"
+             id="password"
              shape="semi-round"
              >
 
-      <button nbButton hero shape="semi-round" status="success" >Log In</button>
+      <button nbButton type="submit" hero shape="semi-round" status="success" >Log In</button>
+    </form>
       <section class="another-action elements" aria-label="Register">
         Don't have an account? <a class="text-link" routerLink="/signup"><strong>Register</strong></a>
       </section>
     </nb-card-body>
+  
   </nb-card>
 
 
