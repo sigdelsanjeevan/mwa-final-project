@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConfigService } from 'src/app/services/config.service';
@@ -9,7 +10,7 @@ import { ConfigService } from 'src/app/services/config.service';
 })
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private myService: ConfigService) {
     this.signupForm = formBuilder.group({
       'firstname': ['', [Validators.required, Validators.pattern("[a-zA-Z][a-zA-Z ]{0,}")]],
       'lastname': ['', [Validators.required, Validators.pattern("[a-zA-Z][a-zA-Z ]{0,}")]],
@@ -22,7 +23,8 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.signupForm);
+    console.log(this.signupForm.value);
+    this.myService.sendSignupRequest().subscribe(incomingdata => console.log(incomingdata), err => console.log(err))
   }
 
   ngOnInit(): void {

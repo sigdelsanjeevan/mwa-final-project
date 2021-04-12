@@ -16,6 +16,7 @@ import { NavbarComponent } from './header/navbar/navbar.component';
 import { SearchComponent } from './header/navbar/search.component';
 import { SharerideComponent } from './home/ride/shareride/shareride.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     NbButtonModule,
     NbEvaIconsModule,
     AppRoutingModule,
+    HttpClientModule,
     NbIconModule,
     NbPopoverModule,
     NbInputModule,
