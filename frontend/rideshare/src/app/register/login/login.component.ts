@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,9 +9,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  constructor(private Auth: AuthService, 
-    private router: Router) { 
+  loginForm: FormGroup;
+  constructor(
+    private Auth: AuthService,
+    private router: Router,
+    private formBuilder: FormBuilder) {
+    this.loginForm = formBuilder.group({
+      'email': ['', [Validators.required]],
+      'password': ['', [Validators.required]]
+    })
   }
 
   ngOnInit(): void {
@@ -23,7 +29,7 @@ export class LoginComponent implements OnInit {
     const password = target.querySelector('#password').value
 
     this.Auth.getUserDetails(username, password).subscribe(data => {
-      if(data.success) {
+      if (data.success) {
         this.router.navigate(['driver/rides'])
         this.Auth.setLoggedIn(true)
       } else {
@@ -32,5 +38,5 @@ export class LoginComponent implements OnInit {
     })
     console.log(username, password)
   }
- 
+
 }
