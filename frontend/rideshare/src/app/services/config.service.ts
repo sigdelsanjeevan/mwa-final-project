@@ -6,6 +6,10 @@ import { HttpClient, HttpResponse } from "@angular/common/http";
 })
 export class ConfigService {
 
-  constructor(private http: HttpClient) { }
+  constructor(public http: HttpClient) { }
+
+  sendSignupRequest() {
+    return this.http.get('http://localhost:3000')
+  }
 
 }
