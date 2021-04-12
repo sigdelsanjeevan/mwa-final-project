@@ -3,10 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbButtonModule,NbTabsetModule, NbStepperModule, NbCardModule, NbInputModule, NbDatepickerModule, NbPopoverModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbButtonModule, NbTabsetModule, NbStepperModule, NbCardModule, NbInputModule, NbDatepickerModule, NbPopoverModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbIconModule } from '@nebular/theme';
-import {NbFormFieldModule} from '@nebular/theme'
+import { NbFormFieldModule } from '@nebular/theme'
 import { AppRoutingModule } from './app-routing.module';
 import { SignupComponent } from './register/signup/signup.component';
 import { LoginComponent } from './register/login/login.component';
@@ -52,6 +52,7 @@ import { RideformComponent } from './home/ride/rideform/rideform.component';
     NbTabsetModule,
     NbEvaIconsModule,
     AppRoutingModule,
+    HttpClientModule,
     NbIconModule,
     NbPopoverModule,
     NbInputModule,
@@ -79,7 +80,7 @@ import { RideformComponent } from './home/ride/rideform/rideform.component';
         path: 'driver/rides',
         component: DriverRidesComponent
       },
-      
+
       {
         path: 'rides/share',
         component: SharerideComponent
