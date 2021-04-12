@@ -22,6 +22,8 @@ import { RidesComponent } from './home/ride/rides/rides.component';
 import { AuthService } from './services/auth.service'
 import { UserService } from './services/user.service'
 import { HttpClientModule } from '@angular/common/http';
+import { RideformComponent } from './home/ride/rideform/rideform.component';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     SearchComponent,
     SharerideComponent,
-    DriverRidesComponent
+    DriverRidesComponent,
+    RideformComponent
   ],
   imports: [
     BrowserModule,

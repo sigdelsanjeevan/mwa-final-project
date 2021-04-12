@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
-var dburl = "mongodb://localhost:27017/rideshare";
+//var dburl = "mongodb://localhost:27017/rideshare";
+var dburl = "mongodb+srv://abelabbasse:Portal1!@rideshare.jrijf.mongodb.net/rideshare?retryWrites=true&w=majority";
 require("./user-model");
 require("./ride-model");
 
