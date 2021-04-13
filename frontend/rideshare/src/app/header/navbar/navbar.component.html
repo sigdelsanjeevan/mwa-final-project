@@ -4,7 +4,7 @@
     <a></a>
     <a *ngIf="user" routerLink="driver/rides">Manage Rides</a>
 
-    <button *ngIf="user" nbButton hero shape="round" status="success" size="medium" (click)="logout()">Log Out<nb-icon
+    <button *ngIf="user" nbButton hero shape="round" status="success" size="medium" (click)="logout()" href="#">Log Out<nb-icon
             icon="log-out-outline"></nb-icon></button>
 
     <button *ngIf="!user" nbButton hero shape="round" status="success" size="medium" routerLink="/login">Login<nb-icon

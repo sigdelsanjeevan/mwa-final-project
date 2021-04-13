@@ -30,7 +30,9 @@ module.exports.doLogin=async function(req,res) {
                        id:user._id,
                        name:user.name,
                        username:user.username,
-                       email:user.email
+                       email:user.email,
+                       firstname:user.firstname,
+                       lastname:user.lastname
                    }
                })
            }
@@ -45,12 +47,11 @@ module.exports.doSignUP= async function(req,res) {
             firstname   : req.body.firstname,
             lastname    : req.body.lastname,
             email       : req.body.email,
-            phone       : req.body.phonenumber,
+            phonenumber       : req.body.phonenumber,
             password    : req.body.password,
         });
         await User.addUser(newUser,(err,user)=>{
             if (err) {
-                console.log(err)
                 res.json({success:false,message:'failed to register user'})
             } else {
                 res.json({success:true,message:'user created successfully'})

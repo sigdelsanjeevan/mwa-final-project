@@ -8,30 +8,32 @@ interface myData {
   message: string
 }
 
-@Injectable()
+@Injectable({providedIn:'root'})
 export class AuthService {
   authToken: any;
   user: any;
-  apiUrl= 'http://localhost:3000/users/';
+  apiUrl= 'http://localhost:5000/users/';
 
-  private loggedInStatus = false
+  private loggedInStatus = false;
 
   constructor(private http: HttpClient) { }
 
   setLoggedIn(value: boolean) {
-    this.loggedInStatus = value
+    this.loggedInStatus = value;
   }
 
   get isLoggedIn() {
-    return this.loggedInStatus
+    return this.loggedInStatus;
   }
 
-  getUserDetails(username, password) {
+
+
+  /*getUserDetails(username, password) {
     return this.http.post<myData>('/login', {
       username,
       password
     })
-  }
+  }*/
 
 
   registerUser(user, callback) {
@@ -43,6 +45,32 @@ export class AuthService {
       }).subscribe(data => {
       callback(data);
     })
-}
+  }
+
+  loginUser(user, callback) {
+    this.http.post(this.apiUrl + 'login', user,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        }),
+      }).subscribe(data => {
+      callback(data);
+    })
+  }
+
+  storeUserData(token,user){
+    localStorage.setItem('id_token',token)
+    //local storage only store string
+    localStorage.setItem('user',JSON.stringify(user));
+    this.authToken= token;
+    this.user=user;
+  }
+
+  logout(){
+    this.authToken=null;
+    this.user=null;
+    localStorage.clear();
+  }
+
 }
 

@@ -22,20 +22,28 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  login(event) {
-    event.preventDefault()
-    const target = event.target
-    const email = target.querySelector('#email').value
-    const password = target.querySelector('#password').value
-    console.log(email, password)
-    this.Auth.getUserDetails(email, password).subscribe(data => {
-      if (data.success) {
-        this.router.navigate(['driver/rides'])
+
+
+  login() {
+    const user = {
+      email: this.loginForm.value.email,
+      password: this.loginForm.value.password
+    };
+    this.Auth.loginUser(user,(data)=>{
+      if(data.success){
         this.Auth.setLoggedIn(true)
-      } else {
-        window.alert(data.message)
+
+        this.Auth.storeUserData(data.token,data.user);
+
+        this.router.navigateByUrl("/driver")
+
+      }else{
+        alert( "User not fount")
+        this.router.navigateByUrl("/login")
+
       }
     })
+
 
   }
 

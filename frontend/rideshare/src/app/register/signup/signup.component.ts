@@ -26,25 +26,22 @@ export class SignupComponent implements OnInit {
   }
 
   onSignup() {
-    console.log(this.signupForm.value);
-   /* this.myService.sendSignupRequest().subscribe(incomingdata => console.log(incomingdata), err => console.log(err))*/
     const user = {
       firstname: this.signupForm.value.firstname,
       lastname: this.signupForm.value.lastname,
       username: this.signupForm.value.username,
-      phone: this.signupForm.value.phone,
+      phonenumber: this.signupForm.value.phonenumber,
       email: this.signupForm.value.email,
       password: this.signupForm.value.password,
     };
 
     //registeruser
     this.authService.registerUser(user,(data)=>{
-      console.log(data)
       if(data.success){
-        this.router.navigateByUrl("/")
+        this.router.navigateByUrl("/login")
       }else{
         this.router.navigateByUrl("/signup")
-        alert("something went wrong")
+        alert( "something went wrong" )
       }
     })
   }

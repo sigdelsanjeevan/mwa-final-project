@@ -1,9 +1,11 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+//var Rides =require('ride-model')
 
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
+        unique:true,
         required: true
     },
 
@@ -19,7 +21,7 @@ const userSchema = new mongoose.Schema({
 
   email: {
         type: String,
-        unique: true,
+      unique:true,
         required: true
     },
 
@@ -33,10 +35,11 @@ const userSchema = new mongoose.Schema({
         required: false
     },
 
-    phone: {
-        type: String,
-        required: true
+    phonenumber: {
+        type: Number,
+        required: false
     },
+    //rides:Rides
 });
 
 const User = mongoose.model('user', userSchema);

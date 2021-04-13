@@ -5,20 +5,20 @@
       <h1 id="title" class="title">Login</h1>
       <p class="sub-title">Hello! Log in with your email.</p>
     </div>
-    <form [formGroup]="loginForm" (submit)="login($event)">
+    <form [formGroup]="loginForm" (submit)="login()">
       <label class="label" for="email">Email address:</label>
       <span class="customWarning"
         *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty || loginForm.get('email').touched)">
         *Required*
       </span>
-      <input nbInput class="elements" status="basic" fullWidth name="email" id="email" placeholder="Enter your email"
+      <input nbInput formControlName="email" class="elements" status="basic" fullWidth name="email" id="email" placeholder="Enter your email"
         shape="semi-round">
       <label class="label" for="password">Password:</label>
       <span class="customWarning"
         *ngIf="loginForm.get('password').invalid && (loginForm.get('password').dirty || loginForm.get('password').touched)">
         *Required*
       </span>
-      <input nbInput fullWidth class="elements" name="password" type="password" id="password"
+      <input nbInput formControlName="password" fullWidth class="elements" name="password" type="password" id="password"
         placeholder="Enter your password" shape="semi-round">
 
       <button nbButton type="submit" hero shape="semi-round" status="success">Log

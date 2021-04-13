@@ -1,20 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
-  user;
-  constructor(private auth: AuthService) { }
+export class NavbarComponent implements OnInit  {
 
-  ngOnInit(): void {
-    this.user = this.auth.isLoggedIn;
+  constructor( private authService: AuthService, private router: Router) {
   }
 
-  logout() {
+  public get user(): boolean {
+    return this.authService.isLoggedIn;
+  }
+  ngOnInit(): void {
 
+  }
+
+
+  logout() {
+    this.authService.logout();
+    this.authService.setLoggedIn(false);
+    this.router.navigateByUrl('/login');
+    //alert("you are logged out")
+    return false
   }
 }
