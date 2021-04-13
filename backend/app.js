@@ -6,6 +6,7 @@ var logger = require('morgan');
 const cors = require('cors');
 var fs = require('fs');
 const bodyParser = require('body-parser');
+const passport = require('passport');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -14,7 +15,7 @@ const mongoose = require("mongoose");
 require('dotenv').config();
 
 var app = express();
-app.set("port", 5000);
+app.set("port", 3000);
 
 //db connection
 mongoose
@@ -51,6 +52,11 @@ app.use(cors({ origin: '*', credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+//passport middlware
+app.use(passport.initialize());
+app.use(passport.session());
+require('./middlewares/passport')(passport)
 
 
 

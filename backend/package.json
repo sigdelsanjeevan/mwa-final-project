@@ -18,7 +18,8 @@
     "mongoose": "^5.12.3",
     "morgan": "~1.9.1",
     "passport": "*",
-    "passport-jwt": "*"
+    "passport-jwt": "*",
+    "rxjs": "^6.6.7"
   },
   "devDependencies": {
     "dotenv": "^8.2.0"

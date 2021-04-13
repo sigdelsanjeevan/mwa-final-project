@@ -33,8 +33,8 @@ import { SharerideComponent } from './home/ride/shareride/shareride.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DriverRidesComponent } from './driver/driver-rides/driver-rides.component';
 import { RidesComponent } from './home/ride/rides/rides.component';
-import { AuthService } from './services/auth.service'
-import { UserService } from './services/user.service'
+import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { RideformComponent } from './home/ride/rideform/rideform.component';
 import { DriverpageComponent } from './driver/driverpage.component';
@@ -79,7 +79,7 @@ import { CitySearchComponent } from './city-search/city-search.component';
     NbAutocompleteModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      //normal users routes 
+      //normal users routes
       {
         path: '',
         component: HomePageComponent

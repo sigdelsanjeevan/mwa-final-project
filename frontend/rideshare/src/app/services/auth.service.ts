@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import {readJSON} from "@nebular/theme/schematics/util";
 
 interface myData {
   success: boolean,
@@ -8,6 +10,9 @@ interface myData {
 
 @Injectable()
 export class AuthService {
+  authToken: any;
+  user: any;
+  apiUrl= 'http://localhost:3000/users/';
 
   private loggedInStatus = false
 
@@ -28,4 +33,16 @@ export class AuthService {
     })
   }
 
+
+  registerUser(user, callback) {
+    this.http.post(this.apiUrl + 'signup', user,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        }),
+      }).subscribe(data => {
+      callback(data);
+    })
 }
+}
+

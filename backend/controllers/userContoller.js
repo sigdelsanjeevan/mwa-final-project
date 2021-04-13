@@ -2,36 +2,52 @@ const path=require("path");
 var  mongoose=require("mongoose");
 const passport = require('passport');
 const jsonwebtoken = require('jsonwebtoken');
-
-
-var responseGenerator = require("../libs/responseGenerator");
-var auth = require("../middlewares/authorization");
-
-// var crypto = require("../libs/crypto");
-// var key = "Crypto-Key";
+require('dotenv').config();
 
 const User =require('../db/user-model')
+const jwt = require("jsonwebtoken");
 
 
-module.exports.doLogin=function(req,res) {
-   res.json('login')
+module.exports.doLogin=async function(req,res) {
+   const email =req.body.email;
+   const password=req.body.password;
+   await User.getUserByEmail(email,(err,user)=>{
+       if(err) throw err;
+       if(!user){
+           return res.json({success:false,message:'user not found'})
+       }
+       User.comparePassword(password,user.password,(err,isMatch)=>{
+           if(err) throw err;
+           //if true create token
+           if(isMatch){
+               const token =jwt.sign({user},process.env.secret,{
+                   expiresIn:604800//week then logout
+               });
+               res.json({
+                   success:true,
+                   token:'JWT '+token,
+                   user:{
+                       id:user._id,
+                       name:user.name,
+                       username:user.username,
+                       email:user.email
+                   }
+               })
+           }
+       })
+   });
 };
 
 
-// -------- API TO SIGNUP USER ---------
 module.exports.doSignUP= async function(req,res) {
-
         let newUser =new User({
-            //_id: req.body._id,
             username    : req.body.username,
             firstname   : req.body.firstname,
             lastname    : req.body.lastname,
             email       : req.body.email,
-            password       : req.body.password,
-            dateOfbirth         : req.body.dateOfbirth,
-            phone       : req.body.phone
+            phone       : req.body.phonenumber,
+            password    : req.body.password,
         });
-        console.log(newUser)
         await User.addUser(newUser,(err,user)=>{
             if (err) {
                 console.log(err)
@@ -40,12 +56,10 @@ module.exports.doSignUP= async function(req,res) {
                 res.json({success:true,message:'user created successfully'})
             }
         })
-
-   
 };
 
-module.exports.getProfile=function(req,res) {
-    res.json('profile')
+module.exports.getProfile=function(req,res,next) {
+    res.json({user:req.user})
 };
 
 

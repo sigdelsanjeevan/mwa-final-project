@@ -2,6 +2,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConfigService } from 'src/app/services/config.service';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'signup',
@@ -10,7 +13,7 @@ import { ConfigService } from 'src/app/services/config.service';
 })
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
-  constructor(private formBuilder: FormBuilder, private myService: ConfigService) {
+  constructor(private formBuilder: FormBuilder, private myService: ConfigService, private authService: AuthService, private router: Router) {
     this.signupForm = formBuilder.group({
       'firstname': ['', [Validators.required, Validators.pattern("[a-zA-Z][a-zA-Z ]{0,}")]],
       'lastname': ['', [Validators.required, Validators.pattern("[a-zA-Z][a-zA-Z ]{0,}")]],
@@ -22,13 +25,35 @@ export class SignupComponent implements OnInit {
     })
   }
 
-  onSubmit() {
+  onSignup() {
     console.log(this.signupForm.value);
-    this.myService.sendSignupRequest().subscribe(incomingdata => console.log(incomingdata), err => console.log(err))
+   /* this.myService.sendSignupRequest().subscribe(incomingdata => console.log(incomingdata), err => console.log(err))*/
+    const user = {
+      firstname: this.signupForm.value.firstname,
+      lastname: this.signupForm.value.lastname,
+      username: this.signupForm.value.username,
+      phone: this.signupForm.value.phone,
+      email: this.signupForm.value.email,
+      password: this.signupForm.value.password,
+    };
+
+    //registeruser
+    this.authService.registerUser(user,(data)=>{
+      console.log(data)
+      if(data.success){
+        this.router.navigateByUrl("/")
+      }else{
+        this.router.navigateByUrl("/signup")
+        alert("something went wrong")
+      }
+    })
   }
 
   ngOnInit(): void {
-      
+
   }
+
+
+
 
 }
