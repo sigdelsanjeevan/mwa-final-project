@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbButtonModule, NbTabsetModule, NbStepperModule, NbCardModule, NbInputModule, NbDatepickerModule, NbPopoverModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbButtonModule, NbTabsetModule, NbStepperModule, NbCardModule, NbInputModule, NbDatepickerModule, NbPopoverModule, NbUserModule, NbAccordionModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbIconModule } from '@nebular/theme';
 import { NbFormFieldModule } from '@nebular/theme'
@@ -23,6 +23,7 @@ import { AuthService } from './services/auth.service'
 import { UserService } from './services/user.service'
 import { HttpClientModule } from '@angular/common/http';
 import { RideformComponent } from './home/ride/rideform/rideform.component';
+import { DriverpageComponent } from './driver/driverpage.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { RideformComponent } from './home/ride/rideform/rideform.component';
     SearchComponent,
     SharerideComponent,
     DriverRidesComponent,
-    RideformComponent
+    RideformComponent,
+    DriverpageComponent
   ],
   imports: [
     BrowserModule,
@@ -51,9 +53,11 @@ import { RideformComponent } from './home/ride/rideform/rideform.component';
     NbFormFieldModule,
     NbTabsetModule,
     NbEvaIconsModule,
+    NbAccordionModule,
     AppRoutingModule,
     HttpClientModule,
     NbIconModule,
+    NbUserModule,
     NbPopoverModule,
     NbInputModule,
     ReactiveFormsModule,
@@ -72,6 +76,10 @@ import { RideformComponent } from './home/ride/rideform/rideform.component';
         component: SignupComponent
       },
       {
+        path: 'driver',
+        component: DriverpageComponent
+      },
+      {
         path: 'rides',
         component: RidesComponent
       },
@@ -84,6 +92,10 @@ import { RideformComponent } from './home/ride/rideform/rideform.component';
       {
         path: 'rides/share',
         component: SharerideComponent
+      },
+      {
+        path: 'driver/rides/add',
+        component: RideformComponent
       },
 
     ])
