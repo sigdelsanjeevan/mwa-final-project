@@ -3,10 +3,24 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbButtonModule, NbTabsetModule, NbStepperModule, NbCardModule, NbInputModule, NbDatepickerModule, NbPopoverModule, NbUserModule, NbAccordionModule } from '@nebular/theme';
+import {
+  NbThemeModule,
+  NbLayoutModule,
+  NbSidebarModule,
+  NbButtonModule,
+  NbTabsetModule,
+  NbStepperModule,
+  NbCardModule,
+  NbInputModule,
+  NbDatepickerModule,
+  NbPopoverModule,
+  NbUserModule,
+  NbAccordionModule
+} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbIconModule } from '@nebular/theme';
-import { NbFormFieldModule } from '@nebular/theme'
+import { NbFormFieldModule } from '@nebular/theme';
+import { NbAutocompleteModule } from '@nebular/theme';
 import { AppRoutingModule } from './app-routing.module';
 import { SignupComponent } from './register/signup/signup.component';
 import { LoginComponent } from './register/login/login.component';
@@ -24,6 +38,7 @@ import { UserService } from './services/user.service'
 import { HttpClientModule } from '@angular/common/http';
 import { RideformComponent } from './home/ride/rideform/rideform.component';
 import { DriverpageComponent } from './driver/driverpage.component';
+import { CitySearchComponent } from './city-search/city-search.component';
 
 
 @NgModule({
@@ -37,7 +52,8 @@ import { DriverpageComponent } from './driver/driverpage.component';
     SharerideComponent,
     DriverRidesComponent,
     RideformComponent,
-    DriverpageComponent
+    DriverpageComponent,
+    CitySearchComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +76,7 @@ import { DriverpageComponent } from './driver/driverpage.component';
     NbUserModule,
     NbPopoverModule,
     NbInputModule,
+    NbAutocompleteModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
       //normal users routes 
