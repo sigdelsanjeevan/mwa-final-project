@@ -30,7 +30,7 @@ router.get('/logout', function (req, res) {
 
 router.get('/rides/all',rideController.getAllRides)
 router.post('/rides/publish',rideController.publishRide)
-router.get('/rides/search',rideController.searchRide)
+router.post('/rides/search',rideController.searchRide)
 router.delete('/ride/delete',rideController.deleteRide)
 router.put('/rides/update',rideController.updateRide)
 
