@@ -39,6 +39,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RideformComponent } from './home/ride/rideform/rideform.component';
 import { DriverpageComponent } from './driver/driverpage.component';
 import { CitySearchComponent } from './city-search/city-search.component';
+import { AuthenticateGuard } from './guards/authenticate.guard';
 
 
 @NgModule({
@@ -94,25 +95,30 @@ import { CitySearchComponent } from './city-search/city-search.component';
       },
       {
         path: 'driver',
-        component: DriverpageComponent
+        component: DriverpageComponent,
+        canActivate: [AuthenticateGuard]
       },
       {
         path: 'rides',
-        component: RidesComponent
+        component: RidesComponent,
+        canActivate: [AuthenticateGuard]
       },
       //routes for drivers
       {
         path: 'driver/rides',
-        component: DriverRidesComponent
+        component: DriverRidesComponent,
+        canActivate: [AuthenticateGuard]
       },
 
       {
         path: 'rides/share',
-        component: SharerideComponent
+        component: SharerideComponent,
+        canActivate: [AuthenticateGuard]
       },
       {
         path: 'driver/rides/add',
-        component: RideformComponent
+        component: RideformComponent,
+        canActivate: [AuthenticateGuard]
       },
 
     ])
