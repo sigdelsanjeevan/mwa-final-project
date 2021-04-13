@@ -40,6 +40,7 @@ import { RideformComponent } from './home/ride/rideform/rideform.component';
 import { DriverpageComponent } from './driver/driverpage.component';
 import { CitySearchComponent } from './city-search/city-search.component';
 import { AuthenticateGuard } from './guards/authenticate.guard';
+import { UpdaterideComponent } from './driver/updateride.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { AuthenticateGuard } from './guards/authenticate.guard';
     DriverRidesComponent,
     RideformComponent,
     DriverpageComponent,
-    CitySearchComponent
+    CitySearchComponent,
+    UpdaterideComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +98,7 @@ import { AuthenticateGuard } from './guards/authenticate.guard';
       {
         path: 'driver',
         component: DriverpageComponent,
-        canActivate: [AuthenticateGuard]
+        // canActivate: [AuthenticateGuard]
       },
       {
         path: 'rides',
@@ -119,6 +121,11 @@ import { AuthenticateGuard } from './guards/authenticate.guard';
         path: 'driver/rides/add',
         component: RideformComponent,
         canActivate: [AuthenticateGuard]
+      },
+      {
+        path: 'driver/rides/update',
+        component: UpdaterideComponent,
+        // canActivate: [AuthenticateGuard]
       },
 
     ])

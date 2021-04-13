@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-rideform',
-  templateUrl: './rideform.component.html',
-  styleUrls: ['./rideform.component.css']
+  selector: 'app-updateride',
+  templateUrl: './updateride.component.html',
+  styles: ['button{margin-top:15px}']
 })
-export class RideformComponent implements OnInit {
-  addRideForm: FormGroup;
+export class UpdaterideComponent implements OnInit {
+  updateRideForm: FormGroup;
   constructor(private formBuilder: FormBuilder) {
-    this.addRideForm = formBuilder.group({
+    this.updateRideForm = formBuilder.group({
       'from': ['', [Validators.required]],
       'to': ['', [Validators.required]],
       'seatsNum': ['', [Validators.required]],
