@@ -25,10 +25,10 @@ export class LoginComponent implements OnInit {
   login(event) {
     event.preventDefault()
     const target = event.target
-    const username = target.querySelector('#email').value
+    const email = target.querySelector('#email').value
     const password = target.querySelector('#password').value
-
-    this.Auth.getUserDetails(username, password).subscribe(data => {
+    console.log(email, password)
+    this.Auth.getUserDetails(email, password).subscribe(data => {
       if (data.success) {
         this.router.navigate(['driver/rides'])
         this.Auth.setLoggedIn(true)
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
         window.alert(data.message)
       }
     })
-    console.log(username, password)
+
   }
 
 }
