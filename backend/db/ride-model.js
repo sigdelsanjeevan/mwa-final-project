@@ -22,7 +22,11 @@ const carSchema = new mongoose.Schema({
 
 
 const rideShema = new mongoose.Schema({
-
+    _id:{
+        type:Number,
+        required:true
+    },
+    
     from: {
         type: String,
         required: true
@@ -47,5 +51,4 @@ const rideShema = new mongoose.Schema({
 
 });
 
-const Ride =mongoose.model("ride", rideShema);
-module.exports =Ride;
+module.exports = mongoose.model('ride', rideShema);
