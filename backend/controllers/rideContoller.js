@@ -57,6 +57,7 @@ module.exports.updateRide=async function(req,res) {
 
 module.exports.deleteRide=function(req,res) {
     const {id}=req.params;
+
     Ride.deleteOne({id})
         .then(result=>res.json(result))
         .catch(err=>res.send(err))

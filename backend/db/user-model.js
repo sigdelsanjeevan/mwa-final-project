@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -16,8 +17,9 @@ const userSchema = new mongoose.Schema({
         required: true
     },
 
-    gender: {
+  email: {
         type: String,
+        unique: true,
         required: true
     },
 
@@ -26,10 +28,9 @@ const userSchema = new mongoose.Schema({
         required: true
     },
 
-    email: {
-        type: String,
-        unique: true,
-        required: true
+   dateOfbirth: {
+        type: Date,
+        required: false
     },
 
     phone: {
@@ -38,12 +39,31 @@ const userSchema = new mongoose.Schema({
         required: true
     },
 
-    dateOfbirth: {
-        type: Date,
-        required: true
-    },
+    
 
 });
 
 const User = mongoose.model('user', userSchema);
 module.exports =User;
+
+
+module.exports.getUserById=function(id,callback){
+    User.findById(id,callback)
+}
+
+module.exports.getUserByUsername=function(username,callback){
+    const query ={username:username}
+    User.findOne(query,callback)
+}
+
+module.exports.addUser=function(newUser,callback){
+    bcrypt.genSalt(10,(err,salt)=>{
+        bcrypt.hash(newUser.password,salt,(err,hash)=>{
+            if(err) throw err;
+            newUser.password=hash;
+            console.log(newUser);
+
+            newUser.save(callback)
+        })
+    })
+}

@@ -25,15 +25,9 @@ router.get('/logout', function (req, res) {
 
 });
 
-router.get('/user/login', userController.doLogin)
-
-router.post('/user/signup', auth.isLoggedIn, userController.doSignUP)
 
 
-router.patch('/user/update', userController.doUpdate)
 
-
-//,auth.isLoggedIn
 router.get('/rides/all',rideController.getAllRides)
 router.post('/rides/publish',rideController.publishRide)
 router.get('/rides/search',rideController.searchRide)
