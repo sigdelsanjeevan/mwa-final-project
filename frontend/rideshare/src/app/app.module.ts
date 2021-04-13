@@ -15,7 +15,8 @@ import {
   NbDatepickerModule,
   NbPopoverModule,
   NbUserModule,
-  NbAccordionModule
+  NbAccordionModule,
+  NbListModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbIconModule } from '@nebular/theme';
@@ -41,6 +42,7 @@ import { DriverpageComponent } from './driver/driverpage.component';
 import { CitySearchComponent } from './city-search/city-search.component';
 import { AuthenticateGuard } from './guards/authenticate.guard';
 import { UpdaterideComponent } from './driver/updateride.component';
+import { RideItemComponent } from './home/ride/ride-item/ride-item.component';
 
 
 @NgModule({
@@ -56,7 +58,9 @@ import { UpdaterideComponent } from './driver/updateride.component';
     RideformComponent,
     DriverpageComponent,
     CitySearchComponent,
-    UpdaterideComponent
+    UpdaterideComponent,
+    RideItemComponent,
+    RidesComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +82,7 @@ import { UpdaterideComponent } from './driver/updateride.component';
     NbIconModule,
     NbUserModule,
     NbPopoverModule,
+    NbListModule,
     NbInputModule,
     NbAutocompleteModule,
     ReactiveFormsModule,
@@ -103,7 +108,7 @@ import { UpdaterideComponent } from './driver/updateride.component';
       {
         path: 'rides',
         component: RidesComponent,
-        canActivate: [AuthenticateGuard]
+        // canActivate: [AuthenticateGuard]
       },
       //routes for drivers
       {

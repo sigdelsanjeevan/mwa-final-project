@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewChild, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild, OnInit, Output, EventEmitter} from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -10,6 +10,8 @@ import * as cities  from '../../assets/iowa-cities.json';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CitySearchComponent implements OnInit {
+
+  @Output() citySearchEvent = new EventEmitter<string>();
 
   options: string[];
   filteredOptions$: Observable<string[]>;
@@ -38,11 +40,9 @@ export class CitySearchComponent implements OnInit {
     this.filteredOptions$ = this.getFilteredOptions(this.input.nativeElement.value);
   }
 
-  onSelectionChange($event) {
+  onSelectionChange($event: string) {
     this.filteredOptions$ = this.getFilteredOptions($event);
-  }
-
+    console.log($event);
+    this.citySearchEvent.emit($event);
+  }  
 }
-
-
-
