@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class AuthService {
   authToken: any;
   user: any;
-  apiUrl = 'http://localhost:5000/';
+  apiUrl = 'http://localhost:3000/';
 
   private loggedInStatus = false;
 
