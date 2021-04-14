@@ -34,8 +34,6 @@ export class SearchComponent implements OnInit {
   }
 
   searchRides() {
-    console.log(this.searchValue);
-    console.log("searching items");
     this.rideService.searchRide(this.searchValue);
   }
   fromCityEvent($event) {

@@ -23,7 +23,7 @@ interface Ride {
   providedIn: 'root'
 })
 export class RideService {
-  private rideSearchUrl = "http://localhost:5000/";
+  private rideSearchUrl = "http://localhost:3000/";
   constructor(private http: HttpClient, private router: Router) { }
 
   private searchResult = [];
@@ -40,16 +40,15 @@ export class RideService {
         (rides) => {
           rides.forEach((val) => { this.searchResult.push(val) })
         },
-        response => { console.log("Ride search error", response); },
+        response => {console.log(this.searchResult); console.log("Ride search error", response); },
         () => { console.log("Get ride search result."); }
       );
   }
-
-  searchRide(searchData) {
+ searchRide(searchData) {
     const { from, to, rideDate } = searchData;
     this.searchResult = [];
     this.fetchSearchResult(from, to, rideDate);
-    console.log(this.searchResult)
+    console.log(this.fetchSearchResult(from, to, rideDate))
     // this.searchResult = res;
     this.router.navigateByUrl('/rides')
   }

@@ -11,7 +11,7 @@ export class DriverpageComponent implements OnInit {
   user: any;
   fullname: string;
   rides: any;
-  getURL: 'http://localhost:5000/driver/rides/';
+  getURL: 'http://localhost:3000/driver/rides/';
 
   constructor(private rideService: RideService) { }
 
@@ -27,11 +27,6 @@ export class DriverpageComponent implements OnInit {
 
       }
     });
-    console.log(this.rides);
-  }
-
-  getRides() {
-
   }
 
 }

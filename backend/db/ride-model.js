@@ -72,5 +72,9 @@ module.exports = Ride
 module.exports.getRidesByEmail = async function (email, callback) {
     const query = { "driver.email": email }
     return Ride.find(query, callback).exec();
+}
 
+module.exports.getRidesBySearch = async function (fromCity, toCity, rideDate,callback) {
+   return Ride.find({$or:[{from: fromCity},{to:toCity}]}).exec()
+    return Ride.find(query, callback).exec();
 }

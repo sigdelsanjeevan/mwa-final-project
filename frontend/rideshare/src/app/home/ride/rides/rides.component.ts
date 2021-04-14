@@ -8,7 +8,7 @@ import { RideService } from '../../../services/ride.service';
 export class RidesComponent implements OnInit {
 
   allRides;
-  constructor(private rideService: RideService ) { 
+  constructor(private rideService: RideService ) {
   }
 
   ngOnInit(): void {

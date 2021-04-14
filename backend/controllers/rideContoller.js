@@ -34,55 +34,12 @@ module.exports.publishRide = async function (req, res) {
 
 module.exports.searchRide = function (req, res) {
 
-    const { fromCity, toCity, rideDate } = req.body;
-    if (!fromCity && !toCity && !rideDate) {
-        return res.status(400).json({
-            message: 'empty search'
-        });
-    }
-    console.log(fromCity, toCity, rideDate);
-    // await Ride.find
-    res.json([
-        {
-            _id: 8,
-            from: "anahzhzhzhzh",
-            to: "jksbi",
-            createdOn: "1221-02-12T05:50:36.000+00:00",
-            seatsNumber: 2,
-            car: {
-                _id: "6074ccf05d94186284205e40",
-                model: "toyotiiiia",
-                year: "1970-01-01T00:00:02.020+00:00",
-                color: "blue"
-            }
-        },
-        {
-            _id: 9,
-            from: "anahzhzhzhzh",
-            to: "jksbi",
-            createdOn: "1221-02-12T05:50:36.000+00:00",
-            seatsNumber: 2,
-            car: {
-                _id: "6074ccf05d94186284205e40",
-                model: "toyotiiiia",
-                year: "1970-01-01T00:00:02.020+00:00",
-                color: "blue"
-            }
-        },
-        {
-            _id: 10,
-            from: "anahzhzhzhzh",
-            to: "jksbi",
-            createdOn: "1221-02-12T05:50:36.000+00:00",
-            seatsNumber: 2,
-            car: {
-                _id: "6074ccf05d94186284205e40",
-                model: "toyotiiiia",
-                year: "1970-01-01T00:00:02.020+00:00",
-                color: "blue"
-            }
-        }
-    ]);
+   const fromCity     =req.body.from ;
+   const toCity       =req.body.to    ;
+   const rideDate     =req.body. createdOn  ;
+    Ride.getRidesBySearch(fromCity, toCity, rideDate)
+        .then((data) => {  res.json({ success: true, message: 'ride obtained successfully', rides: data }) })
+        .catch(err => res.json({ success: false, message: 'ride not obtained', err: err }))
 };
 
 module.exports.updateRide = async function (req, res) {
@@ -108,7 +65,7 @@ module.exports.getRidesByDriver = function (req, res) {
     const email = req.params.email;
 
     Ride.getRidesByEmail(email)
-        .then((data) => { console.log(data); res.json({ success: true, message: 'ride obtained successfully', rides: data }) })
+        .then((data) => { res.json({ success: true, message: 'ride obtained successfully', rides: data }) })
         .catch(err => res.json({ success: false, message: 'ride not obtained', err: err }))
 };
 
