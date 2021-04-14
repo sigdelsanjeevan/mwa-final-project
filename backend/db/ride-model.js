@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-var user =require('./user-model')
+var user = require('./user-model')
 
 const carSchema = new mongoose.Schema({
 
@@ -43,21 +43,21 @@ const rideShema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    car:carSchema,
+    car: carSchema,
     driver: {
-        firstname:{
+        firstname: {
             type: String,
             required: true
         },
-        lastname:{
+        lastname: {
             type: String,
             required: true
         },
-        email:{
+        email: {
             type: String,
             required: true
         },
-        phonenumber:{
+        phonenumber: {
             type: Number,
             required: true
         }
@@ -66,6 +66,11 @@ const rideShema = new mongoose.Schema({
 
 });
 
-module.exports = mongoose.model('ride', rideShema);
+const Ride = mongoose.model('ride', rideShema);
+module.exports = Ride
 
+module.exports.getRidesByEmail = async function (email, callback) {
+    const query = { "driver.email": email }
+    return Ride.find(query, callback).exec();
 
+}

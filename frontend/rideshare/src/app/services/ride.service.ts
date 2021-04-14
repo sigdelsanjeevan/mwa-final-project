@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http"
+import { HttpClient, HttpHeaders } from "@angular/common/http"
 
 import { Router } from '@angular/router';
 
@@ -12,8 +12,8 @@ interface Car {
 
 interface Ride {
   _id: number;
-  from:string;
-  to:string;
+  from: string;
+  to: string;
   createdOn: Date;
   seatsNumber: number;
   car: Car;
@@ -23,22 +23,22 @@ interface Ride {
   providedIn: 'root'
 })
 export class RideService {
-  private rideSearchUrl = "http://localhost:3000/rides/search";
+  private rideSearchUrl = "http://localhost:5000/";
   constructor(private http: HttpClient, private router: Router) { }
 
   private searchResult = [];
   getSearchResult() {
-    if (!this.searchResult){
+    if (!this.searchResult) {
       return [];
     }
     return this.searchResult;
   }
 
   fetchSearchResult(from, to, rideDate) {
-    this.http.post<Ride[]>(this.rideSearchUrl, { from, to, rideDate })
+    this.http.post<Ride[]>(this.rideSearchUrl + 'rides/search', { from, to, rideDate })
       .subscribe(
         (rides) => {
-          rides.forEach((val)=>{this.searchResult.push(val)})
+          rides.forEach((val) => { this.searchResult.push(val) })
         },
         response => { console.log("Ride search error", response); },
         () => { console.log("Get ride search result."); }
@@ -53,4 +53,17 @@ export class RideService {
     // this.searchResult = res;
     this.router.navigateByUrl('/rides')
   }
+
+  searchRideByEmail(email, callback) {
+    this.http.get(this.rideSearchUrl + 'driver/rides/' + email,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        }),
+      }).subscribe(data => {
+        callback(data);
+      })
+  }
 }
+
+

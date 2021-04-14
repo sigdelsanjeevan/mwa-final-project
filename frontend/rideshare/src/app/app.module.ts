@@ -130,7 +130,7 @@ import { RideItemComponent } from './home/ride/ride-item/ride-item.component';
       {
         path: 'driver/rides/update',
         component: UpdaterideComponent,
-        // canActivate: [AuthenticateGuard]
+        canActivate: [AuthenticateGuard]
       },
 
     ])

@@ -29,11 +29,12 @@ router.get('/logout', function (req, res) {
 
 
 
-router.get('/rides/all',rideController.getAllRides)
-router.post('/rides/publish',rideController.publishRide)
-router.post('/rides/search',rideController.searchRide)
-router.delete('/ride/delete',rideController.deleteRide)
-router.put('/rides/update',rideController.updateRide)
+router.get('/rides/all', rideController.getAllRides)
+router.post('/rides/publish', rideController.publishRide)
+router.post('/rides/search', rideController.searchRide)
+router.delete('/ride/delete', rideController.deleteRide)
+router.put('/rides/update', rideController.updateRide)
+router.get('/driver/rides/:email', rideController.getRidesByDriver)
 
 
 
