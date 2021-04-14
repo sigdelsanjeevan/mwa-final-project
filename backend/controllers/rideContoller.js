@@ -4,38 +4,32 @@ const Ride = require('../db/ride-model')
 
 module.exports.getAllRides = async function (req, res) {
     await Ride.find({}, (err, ride) => {
-        var response = {
-            status: 200,
-            message: ride
-        };
         if (err) {
-            response.status = 404;
-            response.message = { "Message": "error happend" }
+            res.json({success:false,message:'failed to fetch rides'})
         }
         else {
             if (!ride) {
-                response.status = 200;
-                response.message = { "Message": "No rides in DataBase" }
+                res.json({success:true,message:'No rides in DataBase'})
             }
         }
-        res.status(response.status).json(response.message);
+        res.json({success:true,message:'rides returned',ride:ride});
     })
 };
 
 module.exports.publishRide = async function (req, res) {
 
-    const { _id, from, to, createdOn, seatsNumber, car } = req.body;
-    if (!_id || !from || !to || !createdOn || !seatsNumber || !car) {
-        return res.status(400).json({
+    const { from, to, createdOn, seatsNumber, car,driver } = req.body;
+    console.log(req.body)
+    if ( !from || !to || !createdOn || !seatsNumber || !car || !driver) {
+        return res.json({
+            success:false,
             message: 'data is not valid !!'
         });
     }
-    const ride = { _id, from, to, createdOn, seatsNumber, car };
+    const ride = {  from, to, createdOn, seatsNumber, car,driver };
     await Ride.create(ride)
-        .then(result => res.status(201).json(result))
-        .catch(err => res.send(err));
-
-
+        .then(result => res.json({success: true,message:'ride created successfully', result: result}))
+        .catch(err => res.json({success:false,message:'failed to create ride',err:err}));
 };
 
 module.exports.searchRide = function (req, res) {
@@ -96,17 +90,18 @@ module.exports.updateRide = async function (req, res) {
         { "_id": req.body._id },
         req.body ,
     ).then((obj) => {
-        console.log('Updated - ');
-        res.status(201).redirect('ride')
-    }).catch(err => res.send("err" + err))
+        res.json({success: true,message:'ride updated successfully'})
+        //res.status(201).redirect('ride')
+    }).catch(err => res.json({success: false,message:'ride not updated'})
+    )
 }
 
 module.exports.deleteRide = function (req, res) {
     const { id } = req.params;
 
     Ride.deleteOne({ id })
-        .then(result => res.json(result))
-        .catch(err => res.send(err))
+        .then({success: true,message:'ride deleted successfully'})
+        .catch(err => res.json({success: false,message:'ride not deleted'}))
 };
 
 

@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
-//var Rides =require('ride-model')
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -39,7 +38,6 @@ const userSchema = new mongoose.Schema({
         type: Number,
         required: false
     },
-    //rides:Rides
 });
 
 const User = mongoose.model('user', userSchema);

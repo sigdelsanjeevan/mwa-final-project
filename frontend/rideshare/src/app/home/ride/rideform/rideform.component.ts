@@ -31,8 +31,8 @@ export class RideformComponent implements OnInit {
     const ride = {
       from: this.addRideForm.value.from,
       to: this.addRideForm.value.to,
-      seatsNum: this.addRideForm.value.seatsNum,
-      date: this.addRideForm.value.date,
+      seatsNumber: this.addRideForm.value.seatsNum,
+      createdOn: this.addRideForm.value.date,
       car: {
         model: this.addRideForm.value.carmodel,
         year: this.addRideForm.value.year,
@@ -45,6 +45,7 @@ export class RideformComponent implements OnInit {
         phonenumber: this.user.phonenumber
       }
     };
+    console.log(ride)
 
     //add a ride
     this.auth.addRide(ride, (data) => {

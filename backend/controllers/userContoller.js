@@ -32,6 +32,7 @@ module.exports.doLogin=async function(req,res) {
                        username:user.username,
                        email:user.email,
                        firstname:user.firstname,
+                       phonenumber:user.phonenumber,
                        lastname:user.lastname
                    }
                })
@@ -47,7 +48,7 @@ module.exports.doSignUP= async function(req,res) {
             firstname   : req.body.firstname,
             lastname    : req.body.lastname,
             email       : req.body.email,
-            phonenumber       : req.body.phonenumber,
+            phonenumber : req.body.phonenumber,
             password    : req.body.password,
         });
         await User.addUser(newUser,(err,user)=>{

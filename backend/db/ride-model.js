@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+var user =require('./user-model')
 
 const carSchema = new mongoose.Schema({
 
@@ -22,11 +23,7 @@ const carSchema = new mongoose.Schema({
 
 
 const rideShema = new mongoose.Schema({
-    _id:{
-        type:Number,
-        required:true
-    },
-    
+
     from: {
         type: String,
         required: true
@@ -46,8 +43,26 @@ const rideShema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    car:carSchema,
+    driver: {
+        firstname:{
+            type: String,
+            required: true
+        },
+        lastname:{
+            type: String,
+            required: true
+        },
+        email:{
+            type: String,
+            required: true
+        },
+        phonenumber:{
+            type: Number,
+            required: true
+        }
+    }
 
-    car:carSchema
 
 });
 

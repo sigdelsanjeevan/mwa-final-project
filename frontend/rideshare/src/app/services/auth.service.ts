@@ -1,12 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { readJSON } from "@nebular/theme/schematics/util";
 
-interface myData {
-  success: boolean,
-  message: string
-}
+
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -25,16 +20,6 @@ export class AuthService {
   get isLoggedIn() {
     return this.loggedInStatus;
   }
-
-
-
-  /*getUserDetails(username, password) {
-    return this.http.post<myData>('/login', {
-      username,
-      password
-    })
-  }*/
-
 
   registerUser(user, callback) {
     this.http.post(this.apiUrl + 'users/signup', user,
