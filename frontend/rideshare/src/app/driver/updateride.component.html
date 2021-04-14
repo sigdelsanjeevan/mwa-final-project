@@ -4,11 +4,11 @@
         <div class="form-header">
             <h1 id="title" class="title">Update ride details</h1>
         </div>
-        <form [formGroup]="updateRideForm">
+        <form [formGroup]="updateRideForm" (ngSubmit)="onUpdateRide()">
 
             <label class="label" for="email">From:</label>
-            <input nbInput type="text" class="elements" status="basic" placeholder="Enter current location" fullWidth
-                name="from" id="from" shape="semi-round" required>
+            <input nbInput type="text" class="elements" status="basic" value="{{rideDetail[0].from}}"
+                placeholder="{{rideDetail[0].from}}" fullWidth name="from" id="from" shape="semi-round" required>
 
             <label class="label" for="password">To:</label>
             <input nbInput fullWidth class="elements" name="to" placeholder="Enter destination" type="text" id="to"

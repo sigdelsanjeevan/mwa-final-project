@@ -4,7 +4,7 @@
         <div class="form-header">
             <h1 id="title" class="title">Add a ride</h1>
         </div>
-        <form [formGroup]="addRideForm">
+        <form [formGroup]="addRideForm" (ngSubmit)="onAddRide()">
 
             <label class="label" for="email">From:</label>
             <input nbInput type="text" class="elements" status="basic" placeholder="Enter current location" fullWidth

@@ -2,7 +2,7 @@
     <nb-card-body>
 
         <p>User page</p>
-        <nb-user size="large" name="John Doe" title="Engineer" color="#cccccc">
+        <nb-user size="large" [name]="user.firstname + ' ' + user.lastname" [title]="user.email" color="#cccccc">
         </nb-user>
 
     </nb-card-body>

@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styles: ['button{margin:10px}']
 })
 export class DriverpageComponent implements OnInit {
+  user: any;
+  fullname: string;
   rides = [{
     from: "chicago", to: "fairfield", date: "12/12/2020", car: {
       model: "Toyota Prius",
@@ -46,6 +48,7 @@ export class DriverpageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem("user"));
   }
 
 }
