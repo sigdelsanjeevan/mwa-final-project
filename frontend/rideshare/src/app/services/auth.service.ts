@@ -51,11 +51,18 @@ export class AuthService {
     this.user = user;
   }
 
+  //fetch token from local storage
+  loadToken(){
+    const token = localStorage.getItem('id_token');
+    this.authToken=token;
+  }
   updateRide(ride, callback) {
+    this.loadToken();
     this.http.put(this.apiUrl + 'rides/update', ride,
       {
         headers: new HttpHeaders({
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': this.authToken
         }),
       }).subscribe(data => {
         callback(data);
@@ -63,10 +70,12 @@ export class AuthService {
   }
 
   addRide(ride, callback) {
+    this.loadToken();
     this.http.post(this.apiUrl + 'rides/publish', ride,
       {
         headers: new HttpHeaders({
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': this.authToken
         }),
       }).subscribe(data => {
         callback(data);
