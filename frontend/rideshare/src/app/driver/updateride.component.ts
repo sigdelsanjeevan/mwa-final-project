@@ -38,9 +38,11 @@ export class UpdaterideComponent implements OnInit {
       to: this.updateRideForm.value.to,
       seatsNum: this.updateRideForm.value.seatsNum,
       date: this.updateRideForm.value.date,
-      carmodel: this.updateRideForm.value.carmodel,
-      year: this.updateRideForm.value.year,
-      color: this.updateRideForm.value.color
+      car: {
+        model: this.updateRideForm.value.carmodel,
+        year: this.updateRideForm.value.year,
+        color: this.updateRideForm.value.color
+      }
     };
 
     //update ride details

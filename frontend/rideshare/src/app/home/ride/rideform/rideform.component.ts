@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RideformComponent implements OnInit {
   addRideForm: FormGroup;
+  user: any;
   constructor(private formBuilder: FormBuilder, private router: Router, private auth: AuthService) {
     this.addRideForm = formBuilder.group({
       'from': ['', [Validators.required]],
@@ -23,6 +24,7 @@ export class RideformComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem("user"));
   }
 
   onAddRide() {
@@ -31,9 +33,17 @@ export class RideformComponent implements OnInit {
       to: this.addRideForm.value.to,
       seatsNum: this.addRideForm.value.seatsNum,
       date: this.addRideForm.value.date,
-      carmodel: this.addRideForm.value.carmodel,
-      year: this.addRideForm.value.year,
-      color: this.addRideForm.value.color
+      car: {
+        model: this.addRideForm.value.carmodel,
+        year: this.addRideForm.value.year,
+        color: this.addRideForm.value.color,
+      },
+      driver: {
+        firstname: this.user.firstname,
+        lastname: this.user.lastname,
+        email: this.user.email,
+        phonenumber: this.user.phonenumber
+      }
     };
 
     //add a ride
