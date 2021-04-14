@@ -74,7 +74,6 @@ module.exports.getRidesByEmail = async function (email, callback) {
     return Ride.find(query, callback).exec();
 }
 
-module.exports.getRidesBySearch = async function (fromCity, toCity, rideDate,callback) {
-   return Ride.find({$or:[{from: fromCity},{to:toCity}]}).exec()
-    return Ride.find(query, callback).exec();
+module.exports.getRidesBySearch = async function (params, callback) {
+    return Ride.find(params, callback).exec();
 }

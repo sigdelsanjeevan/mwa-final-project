@@ -16,7 +16,8 @@ import {
   NbPopoverModule,
   NbUserModule,
   NbAccordionModule,
-  NbListModule
+  NbListModule,
+  NbAlertModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbIconModule } from '@nebular/theme';
@@ -84,6 +85,7 @@ import { RideItemComponent } from './home/ride/ride-item/ride-item.component';
     NbPopoverModule,
     NbListModule,
     NbInputModule,
+    NbAlertModule,
     NbAutocompleteModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
@@ -108,7 +110,7 @@ import { RideItemComponent } from './home/ride/ride-item/ride-item.component';
       {
         path: 'rides',
         component: RidesComponent,
-        // canActivate: [AuthenticateGuard]
+        canActivate: [AuthenticateGuard]
       },
       //routes for drivers
       {

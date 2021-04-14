@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http"
 
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 interface Car {
   _id: string;
@@ -24,21 +25,24 @@ interface Ride {
 })
 export class RideService {
   private rideSearchUrl = "http://localhost:3000/";
-  constructor(private http: HttpClient, private router: Router) { }
-
   private searchResult = [];
-  getSearchResult() {
-    if (!this.searchResult) {
-      return [];
-    }
+  private searchResultSource = new Subject<Ride[]>();
+  dataLoadCalled$ = this.searchResultSource.asObservable();
+  
+  
+  constructor(private http: HttpClient, private router: Router) { }
+  getFirstSearchResult() {
     return this.searchResult;
+  }
+  reloadDataMethod(rideResult:Ride[]) {
+    this.searchResultSource.next(rideResult);
   }
 
   fetchSearchResult(from, to, rideDate) {
     this.http.post<Ride[]>(this.rideSearchUrl + 'rides/search', { from, to, rideDate })
       .subscribe(
         (rides) => {
-          rides.forEach((val) => { this.searchResult.push(val) })
+            rides.forEach((val) => { this.searchResult.push(val) })
         },
         response => {console.log(this.searchResult); console.log("Ride search error", response); },
         () => { console.log("Get ride search result."); }
@@ -48,9 +52,11 @@ export class RideService {
     const { from, to, rideDate } = searchData;
     this.searchResult = [];
     this.fetchSearchResult(from, to, rideDate);
-    console.log(this.fetchSearchResult(from, to, rideDate))
-    // this.searchResult = res;
-    this.router.navigateByUrl('/rides')
+    if (this.router.url == '/rides') {
+      this.reloadDataMethod(this.searchResult);
+    } else {
+      this.router.navigateByUrl('/rides')
+    }
   }
 
   searchRideByEmail(email, callback) {

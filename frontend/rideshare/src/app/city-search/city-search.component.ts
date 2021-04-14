@@ -38,6 +38,7 @@ export class CitySearchComponent implements OnInit {
 
   onChange() {
     this.filteredOptions$ = this.getFilteredOptions(this.input.nativeElement.value);
+    this.citySearchEvent.emit(this.input.nativeElement.value);
   }
 
   onSelectionChange($event: string) {

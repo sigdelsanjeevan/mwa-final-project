@@ -34,8 +34,6 @@ mongoose.connection.on("error",(err)=>{
 
 
 
-
-
 const logFile = path.join(__dirname, 'access.log');
 const streamLog = fs.createWriteStream(logFile);
 app.use(logger('logs', { stream: streamLog }));

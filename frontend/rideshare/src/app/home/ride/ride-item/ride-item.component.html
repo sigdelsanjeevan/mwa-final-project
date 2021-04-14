@@ -3,12 +3,11 @@
     {{ride.from}} 
       <nb-icon icon="arrow-forward-outline"> </nb-icon>
     {{ride.to}}
-    {{ride.car.model}}
+    
   </nb-card-header>
   <nb-card-body>
-    A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases.
-    Originally, nebula was a name for any diffuse astronomical object,
-    including galaxies beyond the Milky Way.
+    <nb-icon icon="people-outline"> </nb-icon> Number of seats: {{ride.seatsNumber}}
+    <nb-icon icon="car-outline"> </nb-icon> Car model: {{ride.car.model}}
+    <nb-icon icon="calendar-outline"> </nb-icon> Car year: {{getYearOfDate(ride.car.year)}}
   </nb-card-body>
-  <nb-card-footer>By Wikipedia</nb-card-footer>
 </nb-card>

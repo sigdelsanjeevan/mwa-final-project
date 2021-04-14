@@ -33,13 +33,35 @@ module.exports.publishRide = async function (req, res) {
 };
 
 module.exports.searchRide = function (req, res) {
+    const { from, to, rideDate } = req.body;
+    date = new Date(rideDate);
+    if (!from && !to && !rideDate) {
+        return res.status(400).json({
+            message: 'empty search'
+        });
+    }
+    let params = {};
+    if (from) {
+        params.from = from.split(",")[0].toLowerCase();
+    }
+    if (to) {
+        params.to = to.split(",")[0].toLowerCase();
+    }
+    if (date) {
+        // params.createdOn = {
+        //     $gte: new Date(date.getTime() - (1000 * 60 * 60 * 24)),
+        //     $lte: new Date(date.getTime() + (1000 * 60 * 60 * 24 * 7))
+        // }
+    }
 
-   const fromCity     =req.body.from ;
-   const toCity       =req.body.to    ;
-   const rideDate     =req.body. createdOn  ;
-    Ride.getRidesBySearch(fromCity, toCity, rideDate)
-        .then((data) => {  res.json({ success: true, message: 'ride obtained successfully', rides: data }) })
-        .catch(err => res.json({ success: false, message: 'ride not obtained', err: err }))
+    console.log(params)
+    Ride.getRidesBySearch(params)
+        .then((data) => { res.json(data) })
+        .catch(err => {
+            console.error(err)
+            res.json([])
+        })
+
 };
 
 module.exports.updateRide = async function (req, res) {
