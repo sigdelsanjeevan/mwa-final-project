@@ -17,8 +17,10 @@ span{
 }
 .classname1{
   float: left;
-  margin: auto;
-  margin-top: 10%;
-
+  margin-top: 5%;
 }
+.img-responsive{
+  border-radius: 15px;
+}
+
 

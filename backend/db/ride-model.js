@@ -67,3 +67,5 @@ const rideShema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('ride', rideShema);
+
+

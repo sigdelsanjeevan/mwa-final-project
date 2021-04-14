@@ -5,11 +5,19 @@ import { RideService } from '../../services/ride.service';
   templateUrl: './search.component.html',
   styles: [
     `
-      .example-items-col{
+      .example-items-col {
         margin: auto;
       }
-      .elem{
+
+      .elem {
         margin: 15px;
+      }
+
+      nb-card {
+        background-image: url("../../../assets/images/rideshare.png");
+
+        background-size: inherit;
+        background-color: #c0d6ca;
       }
     `
   ]
